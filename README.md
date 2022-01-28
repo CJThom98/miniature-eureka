@@ -1,4 +1,8 @@
 # Note Taker Starter Code
 
-## Developer Complaints
-- Front end code given to the developer was incomplete. Notes.html and it's CSS did not match the mock up provided when tested on the local machine. This was a back end project, I'm here to develop, test, and run your server, not clean up your front end teams mess. It's impossible for me to know if the final product matches the client's desire when half of the product is incomplete. 
+## Notes
+- For the most part, developing the server for this website was fairly easy
+- The initial tests were successful and I had an MVP 
+- The problems came to the end and I became dead locked. 
+- Attempting to figure out how to ensure new notes were added was hiddered by a seemingly incomplete css for notes.html
+- Even running the html file through the local machine it didn't match the mock up remotely, the body looked very different 
