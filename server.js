@@ -1,7 +1,12 @@
+const fs = require('fs');
+const path = require('path');
 const { db } = require('./data/db');
 const express = require('express');
 const PORT = process.env.PORT || 3001;
 const app = express();
+
+app.use(express.urlencoded({ extended: true }));
+app.use(express.json());
 
 function filterByQuery(query, dbArray) {
     let filteredResults = dbArray;
@@ -19,6 +24,17 @@ function findById(id, dbArray) {
     return result;
 }
 
+function createNewNote(body, dbArray) {
+    const note = body;
+    dbArray.push(note);
+    fs.writeFileSync(
+        path.join(__dirname, './data/db.json'),
+        JSON.stringify({ db: dbArray }, null, 2)
+    );
+    
+    return note;
+}
+
 app.get('/api/db', (req, res) => {
     let results = db;
     if (req.query) {
@@ -34,6 +50,14 @@ app.get('/api/db/:id', (req, res) => {
     } else {
         res.send(404);
     }
+});
+
+app.post('/api/db', (req, res) => {
+    req.body.id = db.length.toString();
+
+    const note = createNewNote(req.body, db);
+
+    res.json(note);
 });
 
 app.listen(PORT, () => {

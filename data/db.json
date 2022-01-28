@@ -1,9 +1,14 @@
 {
-    "db": [
-        {
-            "id": "0",
-            "title": "This is Your Title!",
-            "text": "This is where you note text goes"
-        }
-    ]
+  "db": [
+    {
+      "id": "0",
+      "title": "This is Your Title!",
+      "text": "This is where you note text goes"
+    },
+    {
+      "title": "Projects to do",
+      "text": "I've got a lot of work to do today.",
+      "id": "1"
+    }
+  ]
 }
