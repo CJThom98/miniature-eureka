@@ -1,8 +1,16 @@
 # Note Taker Starter Code
 
-## Notes
-- For the most part, developing the server for this website was fairly easy
-- The initial tests were successful and I had an MVP 
-- The problems came to the end and I became dead locked. 
-- Attempting to figure out how to ensure new notes were added was hiddered by a seemingly incomplete css for notes.html
-- Even running the html file through the local machine it didn't match the mock up remotely, the body looked very different 
+## Project Description
+Create a server using Express.js for a note taker application
+
+## Contributions
+Main contributor: Cory Thompson
+Anyone else may contribute
+
+## Links
+Link to note taker site: https://boiling-badlands-28140.herokuapp.com/
+
+## Notes & Issues-To-Tackle
+- The biggest issue to tackle for this project is the add and save function
+- While the serve is functioning properly and the website can be accessed anywhere, attempting to properly use it has been tricky
+- Will require outside help in order to solve this issue
