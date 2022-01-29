@@ -1,6 +1,6 @@
 const fs = require('fs');
 const path = require('path');
-const { db } = require('./data/db');
+const { notes } = require('./data/notes');
 const express = require('express');
 const PORT = process.env.PORT || 3001;
 const app = express();
@@ -9,42 +9,42 @@ app.use(express.static('public'));
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
-function filterByQuery(query, dbArray) {
-    let filteredResults = dbArray;
+function filterByQuery(query, notesArray) {
+    let filteredResults = notesArray;
     if (query.title) {
-        filteredResults = filteredResults.filter(db = query.title === query.title);
+        filteredResults = filteredResults.filter(notes = query.title === query.title);
     }
     if (query.text) {
-        filteredResults = filteredResults.filter(db => query.text === query.text);
+        filteredResults = filteredResults.filter(notes => query.text === query.text);
     }
     return filteredResults;
 }
 
-function findById(id, dbArray) {
-    const result = dbArray.filter(db => db.id === id)[0];
+function findById(id, notesArray) {
+    const result = notesArray.filter(notes => notes.id === id)[0];
     return result;
 }
 
-function createNewNote(body, dbArray) {
+function createNewNote(body, notesArray) {
     const note = body;
-    dbArray.push(note);
+    notesArray.push(note);
     fs.writeFileSync(
-        path.join(__dirname, './data/db.json'),
-        JSON.stringify({ db: dbArray }, null, 2)
+        path.join(__dirname, './data/notes.json'),
+        JSON.stringify({ notes: notesArray }, null, 2)
     );
     
     return note;
 }
 
-app.get('/api/db', (req, res) => {
-    let results = db;
+app.get('/api/notes', (req, res) => {
+    let results = notes;
     if (req.query) {
         results = filterByQuery(req.query, results);
     }
     res.json(results);
 });
 
-app.get('/api/db/:id', (req, res) => {
+app.get('/api/notes/:id', (req, res) => {
     const result = findById(req.params.id, animals);
     if (result) {
         res.json(result); 
@@ -53,10 +53,10 @@ app.get('/api/db/:id', (req, res) => {
     }
 });
 
-app.post('/api/db', (req, res) => {
-    req.body.id = db.length.toString();
+app.post('/api/notes', (req, res) => {
+    req.body.id = notes.length.toString();
 
-    const note = createNewNote(req.body, db);
+    const note = createNewNote(req.body, notes);
 
     res.json(note);
 });
